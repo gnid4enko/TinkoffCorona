@@ -44,7 +44,7 @@ while (i < length(y[4]$businessCategories)) {
 
 ### 3) Write the data to Excel (two sheets)
 require("openxlsx")
-path <- "C:/Users/USERNAME/Downloads/tinkoff_data.xlsx"
+path <- paste0("C:/Users/", Sys.info()[["user"]], "/Downloads/tinkoff_data.xlsx") # <set path for the download>
 dfs <- list("potreb" = z1, "business" = z2) # <"potreb" & "business" are sheet names>
 write.xlsx(dfs, file = path, row.names=F)
 
