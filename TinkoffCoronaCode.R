@@ -28,8 +28,9 @@ strt <- y[3]$businessTotal$start
 strt <- as.Date(paste0(substr(strt,7,10),"-",substr(strt,4,5),"-",substr(strt,1,2)))
 ## 2.2) Get aggregated data for business activity
 z2 <- as.data.frame(as.data.frame(y[3]$businessTotal$points)); row.names(z2) <- c()
-z2$add1 <- seq.Date(strt, strt+nrow(z1)-7, by = "week")
-z2$add2 <- seq.Date(strt+6, strt+nrow(z1), by = "week")
+nrrr <- z1[nrow(z1),1]-strt # <number of days since strt (for z2) till the end (for z1)>
+z2$add1 <- seq.Date(strt, strt+nrrr-6, by = "week")
+z2$add2 <- seq.Date(strt+6, strt+nrrr, by = "week")
 names(z2) <- c("Обороты бизнеса","Начало недели","Конец недели")
 z2 <- subset(z2, select=c("Начало недели","Конец недели","Обороты бизнеса"))
 ## 2.3) Get detailed data (business activity by categories)
